@@ -1,5 +1,5 @@
 {
-    "branch": [
+    "branches": [
         "main",
         {
             "name": "develop",
@@ -19,7 +19,8 @@
             "@semantic-release/git",
             {
                 "assets": [
-                    "CHANGELOG.md"
+                    "CHANGELOG.md",
+                    "package.json"
                 ]
             }
         ],
