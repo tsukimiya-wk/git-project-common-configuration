@@ -15,12 +15,8 @@
         "semantic-release": "^24.2.3"
     },
     "scripts": {
-        "cm": "cz",
+        "commit": "cz",
+        "test": "echo \"Error: no test specified\" && exit 1",
         "prepare": "husky install"
-    },
-    "version": "1.0.0",
-    "homepage": "https://github.com/tsukimiya-wk/git-project-common-configuration",
-    "author": {
-        "name": "Yue"
     }
 }
