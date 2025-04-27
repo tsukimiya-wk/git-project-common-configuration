@@ -7,9 +7,16 @@ on:
     pull_request:
         branches:
             - main
+permissions:
+    contents: write
 jobs:
     release:
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            issues: write
+            pull-requests: write
+            id-token: write
         steps:
             # 1. 检出代码
             - name: Checkout code
