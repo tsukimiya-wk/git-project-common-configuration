@@ -2,6 +2,7 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 if [ -t 1 ]; then
+    # 仅在交互式终端中执行
     exec < /dev/tty && npx cz --hook || true
 else
     exit 0
