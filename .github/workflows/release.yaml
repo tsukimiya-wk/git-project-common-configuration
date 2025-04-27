@@ -1,5 +1,8 @@
 name: Release
 on:
+    push:
+        branches:
+            - develop
     pull_request:
         branches:
             - main
@@ -11,13 +14,13 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
               with:
-                fetch-depth: 0 # 需要完整历史记录以分析提交信息
+                  fetch-depth: 0 # 需要完整历史记录以分析提交信息
 
             # 2. 设置Node.js环境
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
-                 node-version: 22
+                  node-version: 22
 
             # 3. 安装依赖
             - name: Install dependencies
@@ -28,4 +31,3 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release
-
