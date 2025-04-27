@@ -1,0 +1,31 @@
+name: Release
+on:
+    pull_request:
+        branches:
+            - main
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            # 1. 检出代码
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0 # 需要完整历史记录以分析提交信息
+
+            # 2. 设置Node.js环境
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                 node-version: 22
+
+            # 3. 安装依赖
+            - name: Install dependencies
+              run: npm install
+
+            # 4. 运行 semantic-release
+            - name: Run semantic-release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: npx semantic-release
+

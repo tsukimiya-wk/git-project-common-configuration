@@ -1,7 +1,6 @@
 {
     "branch": [
-        "main",
-        "release"
+        "main"
     ],
     "plugins": [
         "@semantic-release/commit-analyzer",
@@ -19,6 +18,7 @@
                     "CHANGELOG.md"
                 ]
             }
-        ]
+        ],
+        "@semantic-release/github"
     ]
 }
