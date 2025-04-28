@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.0.0...v1.0.1) (2025-04-28)
+
+
+### Bug Fixes
+
+* **github actions:** 修复npm clean-install 包错问题 ([2804b57](https://github.com/tsukimiya-wk/git-project-common-configuration/commit/2804b5776e17f2ad42d06f41a2426b10f2065f90))
+* **github actions:** 修复semantic-release在拉取请求时不会生成版本号的问题 ([64d03f6](https://github.com/tsukimiya-wk/git-project-common-configuration/commit/64d03f6b4f777df54a20082d57a83ba9c2115fde))
+* 修复因合并问题导致REAME内容消失的问题 ([a93a5db](https://github.com/tsukimiya-wk/git-project-common-configuration/commit/a93a5dbe3e16a354177ab638d227bcafb1662b1f))
+
 ## [1.0.1-develop.1](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.0.0...v1.0.1-develop.1) (2025-04-27)
 
 
