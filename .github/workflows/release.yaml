@@ -38,6 +38,27 @@ jobs:
 
             # 4. 允许 semantic-release
             - name: Run semantic-release
+              id: semantic # 后续的条件步骤需要用到
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release
+
+            # 5. 条件步骤，在发布新版本号后合并到develop分支
+            - name: Merge main into develop
+              if: steps.semantic.outputs.new_release_published == 'true'
+              run: |
+                  echo "Semantic-release published a new version. Merging main into develop."
+
+                  # 配置 Git 用户信息，以便 Git 提交
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+
+                  # 切换到 develop 分支
+                  git switch develop
+
+                  # 合并 main 分支到 develop。使用 --no-ff 保留合并提交历史。
+                  # 使用 steps.semantic.outputs.next_release_tag 获取新发布的版本号作为合并提交信息。
+                  git merge main --no-ff -m "Merge main after release ${{ steps.semantic.outputs.next_release_tag }}"
+
+                  # 将 develop 分支的更改推送到远程仓库
+                  git push origin develop
