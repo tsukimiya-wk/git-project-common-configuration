@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.2.0...v1.3.0) (2025-04-28)
+
+
+### Features
+
+* **github actions:** 将release.yaml分成两个任务，避免合并后develop存在提交落后于main分支的情况 ([ae4db14](https://github.com/tsukimiya-wk/git-project-common-configuration/commit/ae4db1483edd1812b15bf009061ed01ad64e5577))
+
+# [1.2.0](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.1.0...v1.2.0) (2025-04-28)
+
+
+### Features
+
+* **github actions:** 移除了release.yaml里的条件部分，在合并develop到main后强制合并main到develop，避免出现develop落后于main的情况 ([7e16b35](https://github.com/tsukimiya-wk/git-project-common-configuration/commit/7e16b3561bc0858edead144d79e89fd60ca58950))
+
 # [1.1.0](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.0.2...v1.1.0) (2025-04-28)
 
 
