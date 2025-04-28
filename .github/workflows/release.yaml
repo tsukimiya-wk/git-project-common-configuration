@@ -53,6 +53,9 @@ jobs:
             # 1. 检出代码
             - name: Checkout code
               uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             # 合并到develop分支
             - name: Merge main into develop
@@ -68,7 +71,7 @@ jobs:
 
                   # 合并 main 分支到 develop。使用 --no-ff 保留合并提交历史。
                   # 使用 steps.semantic.outputs.next_release_tag 获取新发布的版本号作为合并提交信息。
-                  git merge main --no-ff -m "chore: Merge main into develop"
+                  git merge main --no-ff -m "chore(release): Merge main into develop"
 
                   # 将 develop 分支的更改推送到远程仓库
                   git push origin develop
