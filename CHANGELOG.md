@@ -1,3 +1,18 @@
+# [1.1.0](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.0.2...v1.1.0) (2025-04-28)
+
+
+### Features
+
+* **test:** 假设的新功能1 ([607d2ae](https://github.com/tsukimiya-wk/git-project-common-configuration/commit/607d2aec78d2327646fb1956ba5956d99a06b18c))
+* **test:** 假设的新功能2 ([3ebed55](https://github.com/tsukimiya-wk/git-project-common-configuration/commit/3ebed5566b1fc672121dd1a58e88b4cfa0f2a9de))
+
+## [1.0.2](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.0.1...v1.0.2) (2025-04-28)
+
+
+### Bug Fixes
+
+* **github actions:** 修复预发布分支错误问题 ([b13421d](https://github.com/tsukimiya-wk/git-project-common-configuration/commit/b13421d4867ed9e9c096fa8cbfe7379ac9289771))
+
 ## [1.0.1](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.0.0...v1.0.1) (2025-04-28)
 
 
