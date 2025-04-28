@@ -45,10 +45,15 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: npx semantic-release
 
-            # 5. 条件步骤，在发布新版本号后合并到develop分支
+    merge:
+        name: Merge main into develop
+        runs-on: ubuntu-latest
+        needs: release
+        steps:
+            # 合并到develop分支
             - name: Merge main into develop
               run: |
-                  echo "Semantic-release published a new version. Merging main into develop."
+                  echo "Merging main into develop."
 
                   # 配置 Git 用户信息，以便 Git 提交
                   git config user.name "github-actions[bot]"
@@ -59,7 +64,7 @@ jobs:
 
                   # 合并 main 分支到 develop。使用 --no-ff 保留合并提交历史。
                   # 使用 steps.semantic.outputs.next_release_tag 获取新发布的版本号作为合并提交信息。
-                  git merge main --no-ff -m "Merge main after release ${{ steps.semantic.outputs.next_release_tag }}"
+                  git merge main --no-ff -m "chore: Merge main into develop"
 
                   # 将 develop 分支的更改推送到远程仓库
                   git push origin develop
