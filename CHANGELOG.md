@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.3.2...v1.3.3) (2025-04-28)
+
+
+### Bug Fixes
+
+* **github actions:** 修复github-actions[bot]没有权限的问题 ([81cf7c3](https://github.com/tsukimiya-wk/git-project-common-configuration/commit/81cf7c3f1eb63fa5337162be4945d8d91266fba9))
+
 ## [1.3.2](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.3.1...v1.3.2) (2025-04-28)
 
 
