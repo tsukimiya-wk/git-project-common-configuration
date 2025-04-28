@@ -34,7 +34,9 @@ jobs:
 
             # 3. 安装依赖
             - name: Install dependencies
-              run: npm install # 没有 package-lock.json 文件，无法使用 npm clean-install
+              run: |
+                npm install -g pnpm # 没有 package-lock.json 文件，无法使用 npm clean-install
+                pnpm install --frozen-lockfile
 
             # 4. 允许 semantic-release
             - name: Run semantic-release
