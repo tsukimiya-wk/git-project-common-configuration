@@ -1,0 +1,30 @@
+name: Enforce Branch Source For Main
+
+on:
+    pull_request:
+        branches:
+            - main # 仅在 main 分支上运行
+
+jobs:
+    check-source-branch:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check Source Branch
+              env:
+                  # 获取 PR 的源分支名
+                  SOURCE_BRANCH: "${{ github.head_ref }}"
+              run: |
+                  # 定义允许的源分支列表
+                  ALLOWED_BRANCHE_1="develop"
+                  ALLOWED_PATTERN_2="^hotfix\/" # 匹配 hotfix/ 开头的分支
+
+                  echo "Source branch is: $SOURCE_BRANCH"
+
+                  # 检查源分支是否在允许的列表中
+                  if [[ "$SOURCE_BRANCH" = "$ALLOWED_BRANCHE_1" ]] || [[ "$SOURCE_BRANCH" =~ $ALLOWED_PATTERN_2 ]]; then
+                    echo "✅ Source branch is allowed."
+                    exit 0
+                  else
+                    echo "❌ ERROR: Pull requests to 'main' must originate from the 'develop' branch or a 'hotfix/*' branch."
+                    exit 1
+                  fi
