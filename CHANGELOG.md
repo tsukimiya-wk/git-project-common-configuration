@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.3.0...v1.3.1) (2025-04-28)
+
+
+### Bug Fixes
+
+* **github actions:** 修复merge任务不在git文件夹里的问题 ([0f44445](https://github.com/tsukimiya-wk/git-project-common-configuration/commit/0f444450c583d113a5f9268901b2c8e1acad3304))
+
 # [1.3.0](https://github.com/tsukimiya-wk/git-project-common-configuration/compare/v1.2.0...v1.3.0) (2025-04-28)
 
 
