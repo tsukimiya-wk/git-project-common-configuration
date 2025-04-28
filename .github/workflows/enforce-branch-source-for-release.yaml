@@ -1,0 +1,62 @@
+# 参考：https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md
+name: Enforce Branch Source For Release
+
+on:
+    pull_request:
+        branches:
+            - main # 仅在 main 分支上运行
+
+permissions:
+    contents: read # for checkout
+
+jobs:
+    check-source-branch:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write # 允许发布 GitHub 版本
+            issues: write # 允许对已发布的问题进行评论
+            pull-requests: write # 允许对已提交的拉取请求进行评论
+            id-token: write # 启用OIDC进行npm来源验证
+        steps:
+            # 1. 检查分支是否被允许并入
+            - name: Check Source Branch
+              env:
+                  # 获取 PR 的源分支名
+                  SOURCE_BRANCH: "${{ github.head_ref }}"
+              run: |
+                  # 定义允许的源分支列表
+                  ALLOWED_BRANCHE_1="develop"
+                  ALLOWED_PATTERN_2="^hotfix\/" # 匹配 hotfix/ 开头的分支
+
+                  echo "Source branch is: $SOURCE_BRANCH"
+
+                  # 检查源分支是否在允许的列表中
+                  if [[ "$SOURCE_BRANCH" = "$ALLOWED_BRANCHE_1" ]] || [[ "$SOURCE_BRANCH" =~ $ALLOWED_PATTERN_2 ]]; then
+                    echo "✅ Source branch is allowed."
+                    exit 0
+                  else
+                    echo "❌ ERROR: Pull requests to 'main' must originate from the 'develop' branch or a 'hotfix/*' branch."
+                    exit 1
+                  fi
+
+            # 2. 检出代码
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0 # 需要完整历史记录以分析提交信息
+
+            # 3. 设置Node.js环境
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "lts/*"
+
+            # 4. 安装依赖
+            - name: Install dependencies
+              run: npm clean-install
+
+            # 5. 允许 semantic-release
+            - name: Run semantic-release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: npx semantic-release
