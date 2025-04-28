@@ -17,12 +17,11 @@ jobs:
               run: |
                   # 定义允许的源分支列表
                   ALLOWED_BRANCHE_1="develop"
-                  ALLOWED_PATTERN_2="^hotfix\/" # 匹配 hotfix/ 开头的分支
 
                   echo "Source branch is: $SOURCE_BRANCH"
 
                   # 检查源分支是否在允许的列表中
-                  if [[ "$SOURCE_BRANCH" = "$ALLOWED_BRANCHE_1" ]] || [[ "$SOURCE_BRANCH" =~ $ALLOWED_PATTERN_2 ]]; then
+                  if [[ "$SOURCE_BRANCH" = "$ALLOWED_BRANCHE_1" ]]; then
                     echo "✅ Source branch is allowed."
                     exit 0
                   else
