@@ -21,7 +21,7 @@ jobs:
               echo "Source branch is: $SOURCE_BRANCH"
 
               # 检查源分支是否在允许的列表中
-              if [[ "$SOURCE_BRANCH" = "$ALLOWED_BRANCHE_1" || "$SOURCE_BRANCH" =~ $ALLOWED_PATTERN_2 ]]; then
+              if [[ "$SOURCE_BRANCH" = "$ALLOWED_BRANCHE_1" ]] || [[ "$SOURCE_BRANCH" =~ $ALLOWED_PATTERN_2 ]]; then
                   echo "✅ Source branch is allowed."
                   exit 0
               else
