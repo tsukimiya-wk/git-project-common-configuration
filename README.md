@@ -57,3 +57,7 @@ else
     exit 0
 fi
 ```
+
+## 其他
+
+使用 git flow feature start 时，开头不要使用`删除`，或是太长的名称，容易导致意外错误。
