@@ -1,0 +1,44 @@
+# 参考：https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md
+name: Prerelease
+
+on:
+    push:
+        branches:
+            - main
+
+permissions:
+    contents: read # for checkout
+
+jobs:
+    prerelease:
+        name: Prerelease
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write # 允许发布 GitHub 版本
+            issues: write # 允许对已发布的问题进行评论
+            pull-requests: write # 允许对已提交的拉取请求进行评论
+            id-token: write # 启用OIDC进行npm来源验证
+        steps:
+            # 1. 检出代码
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0 # 需要完整历史记录以分析提交信息
+
+            # 2. 设置Node.js环境
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "lts/*"
+
+            # 3. 安装依赖
+            - name: Install dependencies
+              run: |
+                  npm install -g pnpm # 没有 package-lock.json 文件，无法使用 npm clean-install
+                  pnpm install --frozen-lockfile
+
+            # 4. 允许 semantic-release
+            - name: Run semantic-release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: npx semantic-release
